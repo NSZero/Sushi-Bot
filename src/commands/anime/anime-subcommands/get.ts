@@ -1,7 +1,7 @@
 /*
  * MIT License
  * 
- * Copyright (c) 2023-present Mirage Aegis
+ * Copyright (c) 2024-present Fabian "Splitzy" Sales
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -53,7 +53,10 @@ export const command: Subcommand = {
     async execute(ctx: ChatInputCommandInteraction): Promise<void> {
         // Default values for parameters
         const query: string = ctx.options.getString("query");
-        let animeEmbed: EmbedBuilder = new EmbedBuilder().setTitle(`Anime Get \'${query}\'`).setColor("Orange").setThumbnail("https://avatars.slack-edge.com/2017-07-16/213464927747_f1d4f9fb141ef6666442_512.png")
+        let animeEmbed: EmbedBuilder = new EmbedBuilder()
+            .setTitle(`Anime Get \'${query}\'`)
+            .setColor("Orange")
+            .setThumbnail("https://avatars.slack-edge.com/2017-07-16/213464927747_f1d4f9fb141ef6666442_512.png")
         await ctx.deferReply();
 
         // Search for the anime
@@ -70,9 +73,9 @@ export const command: Subcommand = {
                         { name: "Type", value: anime.showType, inline: true },
                         { name: "Rating", value: anime.averageRating, inline: true },
                         { name: "Age Rating", value: anime.ageRating ? anime.ageRating : `${anime.ageRatingGuide}` || 'Not Yet Rated', inline: true },
-                        { name: "Start", value: anime.startDate, inline: true},
+                        { name: "Start", value: anime.startDate, inline: true },
                         { name: "End", value: anime.endDate || "ongoing", inline: true },
-                        { name: "  ", value: anime.youtubeVideoId ? `[Trailer](https://www.youtube.com/watch?v=${anime.youtubeVideoId})` : "No trailer available"}
+                        { name: "  ", value: anime.youtubeVideoId ? `[Trailer](https://www.youtube.com/watch?v=${anime.youtubeVideoId})` : "No trailer available" }
                     )
                     .setImage(anime.posterImage.large || anime.posterImage.original || anime.posterImage.medium || anime.posterImage.small || anime.posterImage.tiny)
             }
